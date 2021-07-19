@@ -242,6 +242,7 @@ def is_firefox_checkout(topdir):
 def bootstrap_command_only(topdir):
     # we should activate the venv before importing servo.boostrap
     # because the module requires non-standard python packages
+    _activate_virtualenv(topdir, is_firefox_checkout(topdir))
 
     from servo.bootstrap import bootstrap
 
@@ -287,6 +288,7 @@ def bootstrap(topdir):
 
     is_firefox = is_firefox_checkout(topdir)
 
+    _activate_virtualenv(topdir, is_firefox)
 
     def populate_context(context, key=None):
         if key is None:
